@@ -1,31 +1,60 @@
-# Maintainer: Caleb Maclennan <caleb@alerque.com>
+#!/bin/bash
 
-pkgname=hyperglot
+# Created from the original PKGBUILD by Caleb Maclennan <caleb@alerque.com>
+
+# Disable various shellcheck rules that produce false positives in this file.
+# Repository rules should be added to the .shellcheckrc file located in the
+# repository root directory, see https://github.com/koalaman/shellcheck/wiki
+# and https://archiv8.github.io for further information.
+# shellcheck disable=SC2034,SC2154
+# ToDo: Add files: User documentation
+# ToDo: Add files: Tooling
+# FixMe: Namcap warnings and errors
+
+# Maintainer: Ross Clark <https://github.com/Archiv8/hyperglot/discussions>
+# Contributor: Ross Clark <https://github.com/Archiv8/hyperglot/discussions>
+
+pkgname="hyperglot"
 pkgver=0.3.8
 pkgrel=1
-pkgdesc='A database and tools for detecting language support in fonts'
+pkgdesc="A database and tools for detecting language support in fonts"
 arch=(any)
 url="https://github.com/rosettatype/$pkgname"
-license=(GPL3)
-_py_deps=(click
-          colorlog
-          fonttools
-          unicodedata2
-          yaml)
-depends=(python ${_py_deps[@]/#/python-})
-makedepends=(python-{build,installer}
-             python-setuptools
-             python-wheel)
-_archive="$pkgname-$pkgver"
-source=("$_archive.tar.gz::$url/archive/$pkgver.tar.gz")
-sha256sums=('067672f89849cea4fee291a49b5827f9c9c5b7e109b78a130ecd8d34aa66b7fc')
+license=(
+  "GPL3"
+)
+depends=(
+  "python"
+  "python-click"
+  "python-colorlog"
+  "python-fonttools"
+  "python-unicodedata2"
+  "python-yaml"
+)
+makedepends=(
+  "python-build"
+  "python-installer"
+  "python-setuptools"
+  "python-wheel"
+)
+_tarname="$pkgname-$pkgver"
+source=(
+  "$_tarname.tar.gz::$url/archive/$pkgver.tar.gz"
+)
+sha512sums=(
+  "32b8a08795fad10bfe909ddcab9578a53d1a0faf5a9ac79c2a129d2529d00166336560528f298ff8433fdc1149791da948fa2ef4f4d67780bd79b8f8126bdaf6"
+)
 
 build() {
-	cd "$_archive"
-	python -m build -wn
+
+  cd "$_tarname"
+
+  python -m build -wn
 }
 
 package() {
-	cd "$_archive"
-	python -m installer -d "$pkgdir" dist/*.whl
+
+  cd "$_tarname"
+
+  python -m installer -d "$pkgdir" dist/*.whl
 }
