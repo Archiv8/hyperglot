@@ -15,7 +15,7 @@
 # Contributor: Ross Clark <https://github.com/Archiv8/hyperglot/discussions>
 
 pkgname="hyperglot"
-pkgver=0.3.8
+pkgver=0.4.1
 pkgrel=1
 pkgdesc="A database and tools for detecting language support in fonts"
 arch=(any)
@@ -42,7 +42,7 @@ source=(
   "$_tarname.tar.gz::$url/archive/$pkgver.tar.gz"
 )
 sha512sums=(
-  "32b8a08795fad10bfe909ddcab9578a53d1a0faf5a9ac79c2a129d2529d00166336560528f298ff8433fdc1149791da948fa2ef4f4d67780bd79b8f8126bdaf6"
+  "ba7508a96d5baa1f3a7dd861ec3a2b336ae7af724120f71d00a4f93f68f973464660964fcab5c06fcc7f21388035ca643338e6c6e0e0162a6f956c353ff05081"
 )
 
 build() {
